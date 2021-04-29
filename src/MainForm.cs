@@ -131,7 +131,7 @@ namespace HostsFileEditor
 
                 if (result == DialogResult.OK)
                 {
-                    HostsFile.Instance.Archive(inputDialog.Input);
+                    HostsFile.Instance.Archive($"{inputDialog.Input} @ {DateTime.Now.ToString("dd/MM/yyyy---HH-mm")}");
                 }
             }
         }

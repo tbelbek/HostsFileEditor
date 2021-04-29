@@ -85,7 +85,9 @@ namespace HostsFileEditor
         private void OnTextChanged(object sender, EventArgs e)
         {
             string error;
-            this.buttonOk.Enabled = HostsArchive.Validate(this.Input, out error);
+            //this.buttonOk.Enabled = HostsArchive.Validate(this.Input, out error);
+            this.buttonOk.Enabled = true;
+            HostsArchive.Validate(this.Input, out error);
             this.errorProvider.SetError(this.textBox, error);
         }
     }
