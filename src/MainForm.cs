@@ -109,7 +109,7 @@ namespace HostsFileEditor
             }
 
             base.WndProc(ref message);
-        } 
+        }
 
         /// <summary>
         /// Called when archive clicked.
@@ -131,7 +131,7 @@ namespace HostsFileEditor
 
                 if (result == DialogResult.OK)
                 {
-                    HostsFile.Instance.Archive(inputDialog.Input);
+                    HostsFile.Instance.Archive($"{inputDialog.Input} @ {DateTime.Now.ToString("dd/MM/yyyy---HH-mm")}");
                 }
             }
         }
@@ -171,7 +171,7 @@ namespace HostsFileEditor
                 StringBuilder builder = new StringBuilder();
 
                 foreach (
-                    DataGridViewCell cell in 
+                    DataGridViewCell cell in
                     this.dataGridViewHostsEntries.SelectedCells)
                 {
                     if (cell.ValueType == typeof(string))
@@ -179,7 +179,7 @@ namespace HostsFileEditor
                         builder.Append(cell.Value.ToString());
                     }
                 }
-                
+
                 Clipboard.SetText(builder.ToString());
             }
         }
@@ -223,7 +223,7 @@ namespace HostsFileEditor
                 StringBuilder builder = new StringBuilder();
 
                 foreach (
-                    DataGridViewCell cell in 
+                    DataGridViewCell cell in
                     this.dataGridViewHostsEntries.SelectedCells)
                 {
                     if (cell.ValueType == typeof(string))
@@ -256,7 +256,7 @@ namespace HostsFileEditor
             else
             {
                 foreach (
-                    DataGridViewCell cell in 
+                    DataGridViewCell cell in
                     this.dataGridViewHostsEntries.SelectedCells)
                 {
                     if (cell.ValueType == typeof(string))
@@ -725,11 +725,11 @@ namespace HostsFileEditor
 
             this.dataGridViewHostsEntries.CancelEdit();
 
-            if (this.dataGridViewHostsEntries.SelectedRows.Count > 0 && 
+            if (this.dataGridViewHostsEntries.SelectedRows.Count > 0 &&
                 this.clipboardEntries != null)
             {
                 HostsFile.Instance.Entries.Insert(
-                    this.dataGridViewHostsEntries.CurrentHostEntry, 
+                    this.dataGridViewHostsEntries.CurrentHostEntry,
                     this.clipboardEntries);
 
                 this.clipboardEntries = null;
@@ -737,7 +737,7 @@ namespace HostsFileEditor
             else
             {
                 foreach (
-                    DataGridViewCell cell in 
+                    DataGridViewCell cell in
                     this.dataGridViewHostsEntries.SelectedCells)
                 {
                     if (cell.ValueType == typeof(string))
@@ -769,7 +769,7 @@ namespace HostsFileEditor
         {
             this.notifyIcon.Icon =
                 HostsFile.IsEnabled ?
-                Resources.HostsFileEditor : 
+                Resources.HostsFileEditor :
                 Resources.HostsFileEditorDisabled;
         }
 
@@ -822,8 +822,8 @@ namespace HostsFileEditor
         {
             DialogResult result = MessageBox.Show(
                 this,
-                Resources.LoseChangesQuestion, 
-                Resources.LoseChangesDialogCaption, 
+                Resources.LoseChangesQuestion,
+                Resources.LoseChangesDialogCaption,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1);
@@ -926,10 +926,10 @@ namespace HostsFileEditor
         /// instance containing the event data.</param>
         private void OnRemoveDefaultTextClick(object sender, EventArgs e)
         {
-            this.menuRemoveDefaultText.Checked = 
+            this.menuRemoveDefaultText.Checked =
                 !this.menuRemoveDefaultText.Checked;
 
-            HostsFile.RemoveDefaultText = 
+            HostsFile.RemoveDefaultText =
                 this.menuRemoveDefaultText.Checked;
         }
 
@@ -1036,7 +1036,7 @@ namespace HostsFileEditor
             else if (this.dataGridViewHostsEntries.CurrentHostEntry != null)
             {
                 HostsFile.Instance.Entries.SetEnabled(
-                    new [] { this.dataGridViewHostsEntries.CurrentHostEntry },
+                    new[] { this.dataGridViewHostsEntries.CurrentHostEntry },
                     isEnabled: true);
             }
         }
@@ -1059,7 +1059,7 @@ namespace HostsFileEditor
             else if (this.dataGridViewHostsEntries.CurrentHostEntry != null)
             {
                 HostsFile.Instance.Entries.SetEnabled(
-                    new [] { this.dataGridViewHostsEntries.CurrentHostEntry },
+                    new[] { this.dataGridViewHostsEntries.CurrentHostEntry },
                     isEnabled: false);
             }
         }
